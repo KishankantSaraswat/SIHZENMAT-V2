@@ -1,0 +1,200 @@
+<!-- Sidebar with Enhanced Design -->
+<aside class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full rounded-2xl border-0 bg-gradient-to-br from-blue-50 to-blue-100 shadow-lg transition-all duration-300 xl:left-0 xl:translate-x-0">
+  <!-- Logo Section with Modern Design -->
+  <div class="h-19.5 flex items-center justify-between px-6 py-4 border-b border-blue-200">
+    <a href="/" class="flex items-center space-x-3 group">
+      <img 
+        src="{{ url_for('static', filename='assets/img/noisewatch-yogamat-removebg-preview.png') }}"
+        class="h-12 w-12 transition-transform group-hover:scale-110"
+        alt="ZENMAT Logo"
+      />
+      <span class="text-2xl font-bold text-blue-600 transition-colors group-hover:text-blue-800">
+        ZENMAT
+      </span>
+    </a>
+  </div>
+
+  <!-- Navigation Menu with Enhanced Styling -->
+  <div class="px-4 py-6">
+    <ul class="space-y-2">
+      <li>
+        <a href="/index.html" class="flex items-center px-4 py-2.5 rounded-lg group hover:bg-blue-200 transition-colors duration-200 
+          {{ 'bg-blue-500 text-white' if 'index' in segment else 'text-gray-700' }}">
+          <div class="mr-3 p-2 rounded-lg {{ 'bg-blue-600' if 'index' in segment else 'bg-blue-100' }}">
+            <svg class="w-5 h-5 {{ 'text-white' if 'index' in segment else 'text-blue-500' }}" fill="currentColor" viewBox="0 0 20 20">
+              <!-- Dashboard icon path -->
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+            </svg>
+          </div>
+          <span class="font-medium">Dashboard</span>
+        </a>
+      </li>
+      
+      <!-- Additional menu items with similar enhanced styling -->
+      <li>
+        <a href="/tables.html" class="flex items-center px-4 py-2.5 rounded-lg group hover:bg-green-200 transition-colors duration-200
+          {{ 'bg-green-500 text-white' if 'tables' in segment else 'text-gray-700' }}">
+          <div class="mr-3 p-2 rounded-lg {{ 'bg-green-600' if 'tables' in segment else 'bg-green-100' }}">
+            <svg class="w-5 h-5 {{ 'text-white' if 'tables' in segment else 'text-green-500' }}" fill="currentColor" viewBox="0 0 20 20">
+              <!-- Yoga Performance Tracker icon path -->
+              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+              <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <span class="font-medium">Yoga Performance</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="/watch.html" class="flex items-center px-4 py-2.5 rounded-lg group hover:bg-blue-200 transition-colors duration-200
+          {{ 'bg-blue-500 text-white' if 'watch' in segment else 'text-gray-700' }}">
+          <div class="mr-3 p-2 rounded-lg {{ 'bg-blue-600' if 'watch' in segment else 'bg-blue-100' }}">
+            <svg class="w-5 h-5 {{ 'text-white' if 'watch' in segment else 'text-blue-500' }}" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <span class="font-medium">Smartwatch Insights</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/interface.html" class="flex items-center px-4 py-2.5 rounded-lg group hover:bg-green-200 transition-colors duration-200
+          {{ 'bg-green-500 text-white' if 'interface' in segment else 'text-gray-700' }}">
+          <div class="mr-3 p-2 rounded-lg {{ 'bg-green-600' if 'interface' in segment else 'bg-green-100' }}">
+            <svg class="w-5 h-5 {{ 'text-white' if 'interface' in segment else 'text-green-500' }}" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zM3 16a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2z" />
+            </svg>
+          </div>
+          <span class="font-medium">Posture Correction</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/profile.html" class="flex items-center px-4 py-2.5 rounded-lg group hover:bg-purple-200 transition-colors duration-200
+          {{ 'bg-purple-500 text-white' if 'profile' in segment else 'text-gray-700' }}">
+          <div class="mr-3 p-2 rounded-lg {{ 'bg-purple-600' if 'profile' in segment else 'bg-purple-100' }}">
+            <svg class="w-5 h-5 {{ 'text-white' if 'profile' in segment else 'text-purple-500' }}" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <span class="font-medium">Profile</span>
+        </a>
+      </li>
+
+      <!-- More menu items... -->
+    </ul>
+  </div>
+
+  <!-- Reminder Card with Refined Design -->
+  <div class="m-1 bg-white rounded-2xl shadow-lg overflow-hidden">
+    <div class="relative p-4 bg-gradient-to-r from-blue-500 to-green-500 text-white">
+      <div class="absolute inset-0 opacity-20 bg-cover bg-center" style="background-image: url('{{ config.ASSETS_ROOT }}/img/yoga-diet-bg.jpeg')"></div>
+      <div class="relative z-10">
+        <h3 class="text-xl font-bold mb-2">Wellness Reminder</h3>
+        <p class="text-sm opacity-80">Your path to holistic health</p>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-2 text-sm text-gray-700">
+        <li class="flex items-center">
+          <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Morning Session: 6:00 AM
+        </li>
+        <li class="flex items-center">
+          <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Evening Session: 6:00 PM
+        </li>
+        <li class="flex items-center">
+          <svg class="w-4 h-4 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 00.356.067h4.788a.999.999 0 00.356-.067l4.644-1.926a1 1 0 000-1.84l-7-3zM3.022 9.867a1 1 0 011.002.75l1.510 6.434A1.011 1.011 0 015 17h10a1 1 0 01.966-.75l1.509-6.434a1 1 0 011.198-.812 1 1 0 01.788 1.197l-1.598 6.77A3 3 0 0115 19H5a3 3 0 01-2.903-2.242l-1.578-6.703a1 1 0 01.788-1.197z" />
+          </svg>
+          Nutrition Plan Ready
+        </li>
+      </ul>
+      <a href="#" id="viewDetails" class="mt-4 block w-full text-center py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+        View Details
+      </a>
+      
+    </div>
+    
+    <!-- Modal -->
+    
+    
+
+  </div>
+</aside>
+
+<!-- Sidebar -->
+
+<!-- Modal -->
+<div id="dietModal" class="fixed inset-0 bg-gray-500 bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 hidden opacity-0 transition-all duration-300 transform scale-90">
+  <div class="bg-white p-6 rounded-lg shadow-xl max-w-lg w-full transition-transform transform">
+    <h2 class="text-xl font-semibold mb-4 text-center text-green-500">Diet Chart</h2>
+    <div class="mb-4 overflow-x-auto">
+      <!-- Enhanced Table -->
+      <table class="w-full table-auto border-collapse shadow-lg rounded-lg overflow-hidden">
+        <thead class="bg-green-500 text-white">
+          <tr>
+            <th class="px-4 py-2 text-left">Meal</th>
+            <th class="px-4 py-2 text-left">Food</th>
+            <th class="px-4 py-2 text-left">Calories</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover:bg-green-100 transition-colors">
+            <td class="px-4 py-2 border-b">Breakfast</td>
+            <td class="px-4 py-2 border-b">Oats with fruits</td>
+            <td class="px-4 py-2 border-b">250 kcal</td>
+          </tr>
+          <tr class="hover:bg-green-100 transition-colors">
+            <td class="px-4 py-2 border-b">Lunch</td>
+            <td class="px-4 py-2 border-b">Grilled chicken with salad</td>
+            <td class="px-4 py-2 border-b">400 kcal</td>
+          </tr>
+          <tr class="hover:bg-green-100 transition-colors">
+            <td class="px-4 py-2 border-b">Dinner</td>
+            <td class="px-4 py-2 border-b">Steamed vegetables and quinoa</td>
+            <td class="px-4 py-2 border-b">300 kcal</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button id="closeModal" class="mt-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition-colors">
+      Close
+    </button>
+  </div>
+</div>
+
+
+
+
+<script>
+  // Get modal and buttons
+// Get modal and buttons
+const modal = document.getElementById('dietModal');
+const viewDetailsBtn = document.getElementById('viewDetails');
+const closeModalBtn = document.getElementById('closeModal');
+
+// Show the modal with animation when the button is clicked
+viewDetailsBtn.addEventListener('click', function(event) {
+  event.preventDefault();
+  modal.classList.remove('hidden');
+  setTimeout(() => {
+    modal.classList.remove('opacity-0', 'scale-90'); // Animate to full opacity and scale
+  }, 10); // Small delay to ensure the transition happens
+});
+
+// Close the modal with animation when the close button is clicked
+closeModalBtn.addEventListener('click', function() {
+  modal.classList.add('opacity-0', 'scale-90'); // Animate to hidden
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 300); // Delay hiding until the animation finishes
+});
+
+</script>

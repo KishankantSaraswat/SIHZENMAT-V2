@@ -1,0 +1,415 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Dashboard{% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+    body {
+        background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
+    }
+    /* Smooth Modal Transition */
+    #yogaCategoryModal {
+    z-index: 1000; /* Higher value ensures the modal is above other elements */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <!-- Main Content -->
+    <main class="flex-1 p-6 container mx-auto">
+        <header class="mb-8 flex items-center justify-between">
+            <div>
+                <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                    Welcome, John
+                </h1>
+                <p class="text-lg text-gray-500 mt-2">Your personalized yoga journey dashboard</p>
+            </div>
+
+            <div class="flex items-center justify-between space-x-4">
+                <div class="flex items-center space-x-4">
+                    <div class="bg-white shadow-md rounded-full p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <span class="text-gray-600 font-medium">Profile</span>
+                </div>
+                <a href="{{ url_for('authentication_blueprint.logout') }}" class="bg-red-500 text-white rounded-full px-4 py-2 text-sm font-medium shadow-md hover:bg-red-600 transition">
+                    Logout
+                </a>
+            </div>
+            
+        </header>
+
+        <!-- Overview Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-2xl shadow-xl p-6 transform transition hover:scale-105 hover:shadow-2xl">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-500">Sessions</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-blue-600">2</h2>
+                <p class="text-green-500 text-sm">↑ 20% from yesterday</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-6 transform transition hover:scale-105 hover:shadow-2xl">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-500">Posture</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-purple-600">85%</h2>
+                <p class="text-green-500 text-sm">↑ 5% improvement</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-6 transform transition hover:scale-105 hover:shadow-2xl">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-500">Active Minutes</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-green-600">45</h2>
+                <p class="text-green-500 text-sm">On track</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-xl p-6 transform transition hover:scale-105 hover:shadow-2xl">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-500">Calories</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-red-600">280</h2>
+                <p class="text-green-500 text-sm">↑ 15% from last</p>
+            </div>
+        </section>
+
+        <!-- Recent Activities -->
+        <section class="mt-6">
+            <h2 class="text-xl font-semibold">Yoga Activities</h2>
+            <div class="bg-white p-4 rounded-lg shadow mt-4 space-y-4">
+                <!-- Morning Yoga -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="font-semibold">Morning Session</h3>
+                        <p class="text-gray-600">Surya Namaskar and more...</p>
+                    </div>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600" onclick="openYogaCategory('Morning Yoga', morningYogaPoses)">Explore</button>
+                </div>
+                <!-- Evening Yoga -->
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="font-semibold">Evening Session</h3>
+                        <p class="text-gray-600">Meditation and Relaxation</p>
+                    </div>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600" onclick="openYogaCategory('Evening Session', eveningYogaPoses)">Explore</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Modal for Yoga Categories -->
+        <div id="yogaCategoryModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50" onclick="closeYogaCategoryModal()">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-4xl relative" onclick="event.stopPropagation()">
+                <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800" onclick="closeYogaCategoryModal()">&times;</button>
+                <h2 id="yogaCategoryTitle" class="text-xl font-semibold"></h2>
+                <div id="yogaPosesContainer" class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-4">
+                    <!-- Yoga poses dynamically populated here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recent Activities -->
+<!-- Gym Activities Section -->
+<section class="mt-6">
+    <h2 class="text-xl font-semibold">Gym Activities</h2>
+    <div class="bg-white p-4 rounded-lg shadow mt-4 space-y-4">
+        <!-- Morning Gym -->
+        <div class="flex items-center justify-between">
+            <div>
+                <h3 class="font-semibold">Morning Session</h3>
+                <p class="text-gray-600">Cardio and Strength Training</p>
+            </div>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600" onclick="openGymCategory('Morning Gym', morningGymExercises)">Explore</button>
+        </div>
+        <!-- Evening Gym -->
+        <div class="flex items-center justify-between">
+            <div>
+                <h3 class="font-semibold">Evening Session</h3>
+                <p class="text-gray-600">HIIT and Flexibility</p>
+            </div>
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600" onclick="openGymCategory('Evening Gym', eveningGymExercises)">Explore</button>
+        </div>
+    </div>
+</section>
+
+<!-- Modal for Gym Categories -->
+<div id="gymCategoryModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50" onclick="closeGymCategoryModal()">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-4xl relative" onclick="event.stopPropagation()">
+        <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800" onclick="closeGymCategoryModal()">&times;</button>
+        <h2 id="gymCategoryTitle" class="text-xl font-semibold"></h2>
+        <div id="gymExercisesContainer" class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-4">
+            <!-- Gym exercises dynamically populated here -->
+        </div>
+    </div>
+</div>
+
+
+
+
+        
+        
+        
+        
+
+        <!-- Recommendations -->
+        <section class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-xl font-semibold">AI Recommendations</h2>
+                <div class="mt-4 space-y-4">
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-400 rounded">
+                        <h3 class="font-semibold">Posture Improvement</h3>
+                        <p class="text-gray-600">Focus on maintaining a straight back during Warrior Pose. Adjust your stance width.</p>
+                    </div>
+                    <div class="p-4 bg-green-50 border-l-4 border-green-400 rounded">
+                        <h3 class="font-semibold">Progress Note</h3>
+                        <p class="text-gray-600">Great improvement in breathing. Consider increasing hold duration.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posture Analysis -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-xl font-semibold">Posture Analysis</h2>
+                <div class="mt-4">
+                    <h3 class="font-semibold">Current Pose: Warrior II</h3>
+                    <p class="text-gray-600">Real-time posture feedback and analysis</p>
+                </div>
+                <div class="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                    <h3 class="font-semibold">Real-time Feedback</h3>
+                    <p class="text-gray-600">Adjust right knee alignment - bend at 90°.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+            <!-- Current Pose Section -->
+            <div class="col-span-2 bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold">Current Pose: Warrior II</h2>
+                    <span class="text-green-600 bg-green-100 text-sm font-medium px-3 py-1 rounded-full">Active</span>
+                </div>
+                <div class="bg-gray-100 rounded-lg flex flex-col items-center justify-center h-64">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553 2.276a2 2 0 01.896 2.645L17 21M9 10L4.447 12.276a2 2 0 00-.896 2.645L7 21m8-11V3.5a2.5 2.5 0 00-5 0V10m-3 7h8" />
+                    </svg>
+                    <p class="text-gray-500 mt-2">Live Pose Visualization</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-6">
+                    <div class="text-center">
+                        <h3 class="text-sm text-gray-600">Alignment Score</h3>
+                        <p class="text-lg font-bold text-blue-600">85%</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-sm text-gray-600">Time in Pose</h3>
+                        <p class="text-lg font-bold text-green-600">1:45</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback and Pressure Section -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <!-- Real-time Feedback -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold mb-3">Real-time Feedback</h3>
+                    <ul>
+                        <li class="flex items-center text-red-600 text-sm mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zM9 4a1 1 0 112 0v4a1 1 0 01-2 0V4zm1 10a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd" />
+                            </svg>
+                            Adjust right knee alignment - bend at 90°
+                        </li>
+                        <li class="flex items-center text-green-600 text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L7 13.586l-2.293-2.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l9-9a1 1 0 000-1.414z" clip-rule="evenodd" />
+                            </svg>
+                            Arms parallel to the ground - good form
+                        </li>
+                    </ul>
+                </div>
+                <!-- Pressure Distribution -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-3">Pressure Distribution</h3>
+                    <div class="mb-4">
+                        <div class="flex items-center justify-between text-sm">
+                            <span>Left Foot</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full" style="width: 65%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between text-sm">
+                            <span>Right Foot</span>
+                            <span>35%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full" style="width: 35%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+<script src="{{ config.ASSETS_ROOT }}/js/plugins/chartjs.min.js"></script>
+<script src="{{ config.ASSETS_ROOT }}/js/chart-1.js" async></script>
+<script src="{{ config.ASSETS_ROOT }}/js/chart-2.js" async></script>
+<script>
+    function openModal(modalId) {
+        const modal = document.getElementById('modal');
+        modal.classList.remove('hidden');
+        document.querySelectorAll('.modal-content').forEach(content => content.classList.add('hidden'));
+        document.getElementById(modalId).classList.remove('hidden');
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.classList.add('hidden');
+    }
+
+    const morningYogaPoses = [
+        { name: 'Surya Namaskar', image: 'surya-namaskar.jpg' },
+        { name: 'Tree Pose', image: 'tree-pose.jpg' },
+        { name: 'Dog Pose', image: 'dog-pose.jpg' },
+    ];
+
+    const eveningYogaPoses = [
+        { name: 'Meditation', image: 'meditation.jpg' },
+        { name: 'Seated Forward Bend', image: 'seated-bend.jpg' },
+        { name: 'Legs Up the Wall', image: 'legs-up.jpg' },
+    ];
+
+    function openYogaCategory(category, poses) {
+        // Set the title of the modal
+        document.getElementById('yogaCategoryTitle').innerText = category;
+
+        // Clear previous poses in the container
+        const posesContainer = document.getElementById('yogaPosesContainer');
+        posesContainer.innerHTML = '';
+
+        // Add yoga poses to the container dynamically
+        poses.forEach(pose => {
+            const poseDiv = document.createElement('div');
+            poseDiv.classList.add('bg-white', 'p-4', 'rounded-lg', 'shadow', 'flex', 'flex-col', 'items-center');
+
+            poseDiv.innerHTML = `
+                <img src="${pose.image}" alt="${pose.name}" class="w-full h-32 object-cover rounded-lg mb-4">
+                <h3 class="font-semibold">${pose.name}</h3>
+                <button class="bg-green-500 text-white px-4 py-2 rounded-lg mt-2 hover:bg-green-600" onclick="goToPracticePage('${pose.name}')">Start ${pose.name}</button>
+            `;
+
+            posesContainer.appendChild(poseDiv);
+        });
+
+        // Show the modal
+        document.getElementById('yogaCategoryModal').classList.remove('hidden');
+    }
+
+    function closeYogaCategoryModal() {
+        document.getElementById('yogaCategoryModal').classList.add('hidden');
+    }
+
+    function goToPracticePage(poseName) {
+        // Redirect to interface.html with the pose name as a query parameter
+        window.location.href = `/interface.html?pose=${encodeURIComponent(poseName)}`;
+    }
+
+    
+    const morningGymExercises = [
+    { name: 'Treadmill', image: 'treadmill.jpg', description: 'Cardio workout for endurance.' },
+    { name: 'Push-ups', image: 'pushups.jpg', description: 'Strength training for upper body.' },
+    { name: 'Squats', image: 'squats.jpg', description: 'Leg workout for strength.' },
+];
+
+const eveningGymExercises = [
+    { name: 'HIIT', image: 'hiit.jpg', description: 'High Intensity Interval Training.' },
+    { name: 'Lunges', image: 'lunges.jpg', description: 'Lower body strength exercise.' },
+    { name: 'Planks', image: 'planks.jpg', description: 'Core strengthening exercise.' },
+];
+
+function openGymCategory(category, exercises) {
+    // Set the title of the modal
+    document.getElementById('gymCategoryTitle').innerText = category;
+
+    // Clear previous exercises in the container
+    const exercisesContainer = document.getElementById('gymExercisesContainer');
+    exercisesContainer.innerHTML = '';
+
+    // Add gym exercises to the container dynamically
+    exercises.forEach(exercise => {
+        const exerciseDiv = document.createElement('div');
+        exerciseDiv.classList.add('bg-white', 'p-4', 'rounded-lg', 'shadow', 'flex', 'flex-col', 'items-center');
+
+        exerciseDiv.innerHTML = `
+            <img src="${exercise.image}" alt="${exercise.name}" class="w-full h-32 object-cover rounded-lg mb-4">
+            <h3 class="font-semibold">${exercise.name}</h3>
+            <p class="text-gray-600 text-center mb-2">${exercise.description}</p>
+            <button class="bg-green-500 text-white px-4 py-2 rounded-lg mt-2 hover:bg-green-600" onclick="goToGymPracticePage('${exercise.name}')">Start ${exercise.name}</button>
+        `;
+
+        exercisesContainer.appendChild(exerciseDiv);
+
+        
+    });
+    const gymCategoryModal = document.getElementById('gymCategoryModal');
+    gymCategoryModal.classList.remove('hidden');
+    gymCategoryModal.style.zIndex = '9999'; 
+
+    // Show the modal
+    // document.getElementById('gymCategoryModal').classList.remove('hidden');
+}
+
+function closeGymCategoryModal() {
+    document.getElementById('gymCategoryModal').classList.add('hidden');
+}
+
+function goToGymPracticePage(exerciseName) {
+    // Redirect to interface.html with the exercise name as a query parameter
+    window.location.href = `/interface.html?exercise=${encodeURIComponent(exerciseName)}`;
+}
+
+
+</script>
+
+<script>
+    
+
+    
+</script>
+
+
+{% endblock javascripts %}
