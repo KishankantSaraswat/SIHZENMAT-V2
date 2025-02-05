@@ -1,0 +1,164 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}AI Recommendations{% endblock title %}
+
+{% block stylesheets %}
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen p-8">
+  <div class="container mx-auto">
+    <!-- Main Content Wrapper -->
+    <div class="bg-white p-8 rounded-xl shadow-xl space-y-8">
+      <!-- Title Section -->
+      <div>
+        <h2 class="text-4xl font-bold text-gray-800">AI Recommendations</h2>
+        <p class="text-lg text-gray-600">Personalized insights and suggestions for your practice</p>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Left Column - Focus Areas -->
+        <div class="lg:col-span-2 space-y-6">
+          <h3 class="text-2xl font-semibold text-gray-800">Today's Focus Areas</h3>
+          
+          <!-- Warrior II Card -->
+          <div class="bg-blue-50 p-6 rounded-xl">
+            <div class="flex items-start gap-4">
+              <div class="bg-blue-100 p-3 rounded-lg">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h4 class="text-xl font-semibold text-blue-800">Warrior II Alignment</h4>
+                <p class="text-blue-600 mt-1">Focus on keeping your front knee aligned with your ankle. Sensors indicate slight misalignment.</p>
+                <div class="flex gap-4 mt-4">
+                  <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-sm">High Priority</span>
+                  <span class="text-gray-600 text-sm">15 min practice</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Breathing Technique Card -->
+          <div class="bg-green-50 p-6 rounded-xl">
+            <div class="flex items-start gap-4">
+              <div class="bg-green-100 p-3 rounded-lg">
+                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h4 class="text-xl font-semibold text-green-800">Breathing Technique</h4>
+                <p class="text-green-600 mt-1">Your breath coordination has improved. Continue focusing on deep, steady breaths during transitions.</p>
+                <div class="flex gap-4 mt-4">
+                  <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm">Progress noted</span>
+                  <span class="text-gray-600 text-sm">10 min practice</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommended Sequence -->
+          <div class="mt-8">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Recommended Sequence</h3>
+            <div class="space-y-4">
+              <!-- Sequence Items -->
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div class="flex items-center gap-4">
+                  <span class="text-gray-400 text-lg">1</span>
+                  <span class="text-gray-800 font-medium">Mountain Pose</span>
+                </div>
+                <span class="text-gray-600">2 min</span>
+              </div>
+
+              <div class="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
+                <div class="flex items-center gap-4">
+                  <span class="text-blue-400 text-lg">2</span>
+                  <span class="text-blue-800 font-medium">Warrior II</span>
+                </div>
+                <span class="text-blue-600">5 min</span>
+              </div>
+
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div class="flex items-center gap-4">
+                  <span class="text-gray-400 text-lg">3</span>
+                  <span class="text-gray-800 font-medium">Triangle Pose</span>
+                </div>
+                <span class="text-gray-600">3 min</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Practice Insights & Tips -->
+        <div class="space-y-8">
+          <!-- Practice Insights -->
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Practice Insights</h3>
+            <div class="space-y-6">
+              <!-- Balance Score -->
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-600">Balance Score</span>
+                  <span class="text-green-600 font-semibold">85%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                </div>
+              </div>
+
+              <!-- Alignment Accuracy -->
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-600">Alignment Accuracy</span>
+                  <span class="text-blue-600 font-semibold">78%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-blue-500 h-2 rounded-full" style="width: 78%"></div>
+                </div>
+              </div>
+
+              <!-- Breathing Sync -->
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="text-gray-600">Breathing Sync</span>
+                  <span class="text-purple-600 font-semibold">92%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-purple-500 h-2 rounded-full" style="width: 92%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Tips -->
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">AI Tips</h3>
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <div class="text-yellow-500">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                  </svg>
+                </div>
+                <p class="text-gray-700">Try holding poses for 2-3 more breaths to build strength</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="text-blue-500">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <p class="text-gray-700">Focus on engaging your core during transitions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

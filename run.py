@@ -10,6 +10,12 @@ from flask_minify import Minify
 from apps.config import config_dict
 from apps import create_app, db
 
+import random
+from langchain.chains import ConversationChain
+from langchain.chains.conversation.memory import ConversationBufferWindowMemory
+from langchain_groq import ChatGroq
+from flask import session, request, jsonify
+
 # Paths for the model and scaler
 base_path = r'C:\Users\pc\Downloads\flask-soft-dashboard-tailwind-main\flask-soft-dashboard-tailwind-main'
 model_path = os.path.join(base_path, 'yoga_pose_model.pkl')
@@ -90,6 +96,33 @@ def index():
 def test():
     return render_template('home/test.html')
 
+@app.route('/progress-tracking')
+def progress_tracking():
+    # You can pass dynamic data to the template if required.
+    # Example of dummy data (can be replaced with actual data from your database or logic):
+    data = {
+        "weekly_stats": {
+            "practice_time": "4.5 hrs",
+            "practice_progress": 75,
+            "poses_mastered": "12/15",
+            "pose_progress": 80,
+            "consistency": 90
+        },
+        "practice_streak": {
+            "days": 7,
+            "hours": 4,
+            "minutes": 30
+        },
+        "achievements": [
+            {"icon": "✨", "title": "7-Day Streak"},
+            {"icon": "✔️", "title": "Perfect Form"}
+        ],
+        "pose_proficiency": [
+            {"pose": "Warrior II", "level": "Advanced"},
+            {"pose": "Tree Pose", "level": "Intermediate"}
+        ]
+    }
+    return render_template('progress.html', data=data)
 # Function to generate video frames
 def generate_frames():
     cap = cv2.VideoCapture(0)
@@ -167,6 +200,87 @@ def generate_frames():
 @app.route('/video_feed')
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+# Load environment variables
+groq_api_key = os.environ['GROQ_API_KEY']  # Ensure your API key is set in the environment variables
+
+# Initialize Groq Langchain chat object
+def get_conversation_chain(model_name):
+    memory = ConversationBufferWindowMemory(k=5)  # Default memory length, can be adjusted
+    groq_chat = ChatGroq(groq_api_key=groq_api_key, model_name=model_name)
+    return ConversationChain(llm=groq_chat, memory=memory)
+
+# Format user input to limit response length and enforce bullet points
+def format_user_prompt(question):
+    formatted_prompt = f"""
+    {question}
+
+    Please provide the answer, and the total response should not exceed 30 words.
+    """
+    return formatted_prompt
+
+# Process and format the response for user
+def process_response(response_text):
+    # Check if response_text contains line breaks or bullet points
+    points = response_text.split('\n')  # Assuming each point comes on a new line
+    
+    if len(points) == 1:
+        # Try to split by periods if no line breaks are found
+        points = response_text.split('. ')
+    
+    # Clean and reformat the response to remove any unwanted symbols and ensure proper format
+    formatted_response = ''
+    for i, point in enumerate(points):
+        point = point.strip('- ')  # Strip unwanted symbols like dashes or extra spaces
+        if point:
+            formatted_response += f"{i+1}. {point}<br>"  # Add HTML line break and numbering
+
+    return formatted_response
+
+
+# Route to display the chatbot UI
+@app.route('/chatbot', methods=['GET'])
+def chatbot():
+    """
+    This route serves the chatbot interface when accessed by the user.
+    It loads the chatbot page.
+    """
+    return render_template('home/chatbot.html')
+
+# Route to handle chat requests from the frontend
+# Route to handle chat requests from the frontend
+@app.route('/chat', methods=['POST'])
+def chat():
+    user_question = request.json.get('message')
+    selected_model = "mixtral-8x7b-32768"  # Example model, adjust as needed
+    memory_length = 5  # Default memory length
+
+    # Get conversation chain and process the user's message
+    conversation_chain = get_conversation_chain(selected_model)
+    conversation_chain.memory.k = memory_length
+
+    # Format the question with word limit and bullet points
+    formatted_prompt = format_user_prompt(user_question)
+    
+    try:
+        # Invoke the conversation chain
+        response = conversation_chain.invoke(formatted_prompt)
+        
+        # Check if response is valid and process it
+        ai_response = process_response(response['response'])
+
+    except Exception as e:
+        ai_response = f"Error processing the response: {str(e)}"
+        print(f"Error during conversation chain invoke: {str(e)}")
+
+    # Update the chat history stored in the session
+    chat_history = session.get('chat_history', [])
+    chat_history.append({'human': user_question, 'AI': ai_response})
+    session['chat_history'] = chat_history
+
+    return jsonify({'response': ai_response})
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)

@@ -1,4 +1,43 @@
 <!-- Sidebar with Enhanced Design -->
+
+<style>
+  .chatbot-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+ /*background-color: #007bff; */
+  border-radius: 50%;
+  padding: 15px;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+  z-index: 9999999; /* Ensure it's above other elements */
+}
+
+.chatbot-icon:hover {
+  transform: scale(1.1);
+  /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4); */
+}
+
+
+.chatbot-icon svg {
+  width: 35px;
+  height: 35px;
+}
+.sidebar-text:hover {
+  transform: scale(1.1);
+}
+.sidebar {
+  z-index: 999;
+}
+
+
+
+body {
+  padding-bottom: 70px; /* Adjust as per requirement */
+}
+
+
+</style>
 <aside class="max-w-62.5 ease-nav-brand z-990 fixed inset-y-0 my-4 ml-4 block w-full rounded-2xl border-0 bg-gradient-to-br from-blue-50 to-blue-100 shadow-lg transition-all duration-300 xl:left-0 xl:translate-x-0">
   <!-- Logo Section with Modern Design -->
   <div class="h-19.5 flex items-center justify-between px-6 py-4 border-b border-blue-200">
@@ -59,18 +98,31 @@
       </li>
       
       <li>
-        <a href="/interface.html" class="flex items-center px-4 py-2.5 rounded-lg group hover:bg-green-200 transition-colors duration-200
-          {{ 'bg-green-500 text-white' if 'interface' in segment else 'text-gray-700' }}">
-          <div class="mr-3 p-2 rounded-lg {{ 'bg-green-600' if 'interface' in segment else 'bg-green-100' }}">
-            <svg class="w-5 h-5 {{ 'text-white' if 'interface' in segment else 'text-green-500' }}" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2zM3 16a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-2z" />
+        <a href="/recommendation.html" class="flex items-center px-4 py-2.5 rounded-lg group hover:bg-green-200 transition-colors duration-200
+          {{ 'bg-green-500 text-white' if 'recommendations' in segment else 'text-green-700' }}">
+          <div class="mr-3 p-2 rounded-lg {{ 'bg-green-600' if 'recommendations' in segment else 'bg-green-100' }}">
+            <svg class="w-5 h-5 {{ 'text-white' if 'recommendations' in segment else 'text-green-500' }}" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0zm13.5 2A1.5 1.5 0 0014 13.5V15a1 1 0 01-1 1H9a1 1 0 01-1-1v-1.5a1.5 1.5 0 00-1.5-1.5h-2A1.5 1.5 0 003 13.5V15a1 1 0 01-1 1H1a1 1 0 01-1-1v-1.5A1.5 1.5 0 000 12v-2a1.5 1.5 0 001.5-1.5V7A1.5 1.5 0 003 5.5h2A1.5 1.5 0 006.5 7v1.5A1.5 1.5 0 008 10h4a1.5 1.5 0 001.5-1.5V7A1.5 1.5 0 0015 5.5h2A1.5 1.5 0 0018 7v1.5A1.5 1.5 0 0019.5 10H18a1.5 1.5 0 00-1.5 1.5V13.5z"/>
             </svg>
           </div>
-          <span class="font-medium">Posture Correction</span>
+          <span class="font-medium">AI Recommendations</span>
         </a>
       </li>
       
       <li>
+        <a href="/progress.html" class="flex items-center px-4 py-2.5 rounded-lg group hover:bg-blue-200 transition-colors duration-200
+          {{ 'bg-blue-500 text-white' if 'progress' in segment else 'text-gray-700' }}">
+          <div class="mr-3 p-2 rounded-lg {{ 'bg-blue-600' if 'progress' in segment else 'bg-blue-100' }}">
+            <svg class="w-5 h-5 {{ 'text-white' if 'progress' in segment else 'text-blue-500' }}" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 2a1 1 0 011 1v10.59l3.3-3.3a1 1 0 111.4 1.42l-5 5a1 1 0 01-1.4 0l-5-5a1 1 0 011.4-1.42L9 13.59V3a1 1 0 011-1z" />
+            </svg>
+          </div>
+          <span class="font-medium">Progress Tracking</span>
+        </a>
+      </li>
+      
+      
+      <!-- <li>
         <a href="/profile.html" class="flex items-center px-4 py-2.5 rounded-lg group hover:bg-purple-200 transition-colors duration-200
           {{ 'bg-purple-500 text-white' if 'profile' in segment else 'text-gray-700' }}">
           <div class="mr-3 p-2 rounded-lg {{ 'bg-purple-600' if 'profile' in segment else 'bg-purple-100' }}">
@@ -80,7 +132,7 @@
           </div>
           <span class="font-medium">Profile</span>
         </a>
-      </li>
+      </li> -->
 
       <!-- More menu items... -->
     </ul>
@@ -121,13 +173,24 @@
       </a>
       
     </div>
+
+    
     
     <!-- Modal -->
     
     
 
   </div>
+  
 </aside>
+<div class="chatbot-icon text-center" onclick="openChatbotWindow()">
+  <img src="{{ config.ASSETS_ROOT }}/img/chatbot.png" height="200" width="200" alt="Chatbot Icon">
+  <!-- <div class="mt-2 fs-6 text-primary font-weight-bold">🚨Deliver360</div> -->
+</div>
+
+
+
+
 
 <!-- Sidebar -->
 
@@ -196,5 +259,18 @@ closeModalBtn.addEventListener('click', function() {
     modal.classList.add('hidden');
   }, 300); // Delay hiding until the animation finishes
 });
+
+async function fetchSuggestion() {
+    const response = await fetch('/get-suggestion');
+    const data = await response.json();
+    document.getElementById('suggestion-text').innerText = data.suggestion;
+}
+
+document.addEventListener("DOMContentLoaded", fetchSuggestion);
+
+function openChatbotWindow() {
+    // Open a new window with the chatbot interface
+    window.open('/chatbot', 'Chatbot', 'width=400,height=600,resizable=yes');
+}
 
 </script>

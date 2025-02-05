@@ -1,90 +1,157 @@
 {% extends 'layouts/base-fullscreen.html' %}
 
-{% block title %} Sign IN {% endblock title %}
+{% block title %} Sign In - AI Yoga Mat {% endblock title %}
 
-<!-- Specific CSS goes HERE -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style>
+  /* General Theme Colors */
+  :root {
+    --primary-gradient: linear-gradient(90deg, #007bff, #0056b3); /* Blue gradient */
+    --input-border-color: #d0e6f8; /* Light blue */
+    --button-hover-color: #004085; /* Dark blue */
+    --background-color: #f7f9fc; /* Very light blue */
+    --text-color: #333333; /* Dark text color */
+  }
+
+  body {
+    background: var(--background-color);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Button Styling */
+  .btn-gradient {
+    background: var(--primary-gradient);
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+  }
+
+  .btn-gradient:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+  }
+
+  /* Input Styling */
+  .custom-input {
+    border: 1px solid var(--input-border-color);
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+    background: white;
+  }
+
+  .custom-input:focus {
+    border-color: var(--button-hover-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 64, 133, 0.4);
+  }
+
+  /* Background Animation */
+  .animated-bg {
+    background-image: url('{{ config.ASSETS_ROOT }}/img/yoga-background-blue.jpg'); /* Replace with a blue-themed yoga image */
+    background-size: cover;
+    background-position: center;
+    animation: float 10s infinite ease-in-out alternate;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(10px);
+    }
+  }
+
+  /* Card Styling */
+  .card {
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+    border-radius: 12px;
+  }
+
+  /* Text Colors */
+  .text-blue {
+    color: #0056b3;
+  }
+</style>
+{% endblock stylesheets %}
 
 {% block content %}
-
-    <div class="container sticky top-0 z-sticky">
-      <div class="flex flex-wrap -mx-3">
-        <div class="w-full max-w-full px-3 flex-0">
-
-          {% include "includes/navigation-sign-in.html" %} 
-
-        </div>
-      </div>
+<div class="container sticky top-0 z-sticky">
+  <div class="flex flex-wrap -mx-3">
+    <div class="w-full max-w-full px-3 flex-0">
+      {% include "includes/navigation-sign-in.html" %}
     </div>
+  </div>
+</div>
 
-    <main class="mt-0 transition-all duration-200 ease-soft-in-out">
-      <section>
-        <div class="relative flex items-center p-0 overflow-hidden bg-center bg-cover min-h-75-screen">
-          <div class="container z-10">
-            <div class="flex flex-wrap mt-0 -mx-3">
-              <div class="flex flex-col w-full max-w-full px-3 mx-auto md:flex-0 shrink-0 md:w-6/12 lg:w-5/12 xl:w-4/12">
-                <div class="relative flex flex-col min-w-0 mt-32 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border">
-                  <div class="p-6 pb-0 mb-0 bg-transparent border-b-0 rounded-t-2xl">
-                    <h4 class="relative z-10 font-bold text-transparent bg-gradient-cyan bg-clip-text">
-                      Soft Dashboard Tailwind - Login
-                    </h4>
-                    <p class="mb-0">
-                      {% if msg %}
-                        <span class="">{{ msg | safe }}</span>
-                      {% else %}
-                          Add your credentials
-                      {% endif %} 
-                    </p>
-                  </div>
-                  <div class="flex-auto p-6">
-
-                    <form role="form text-left" method="post" action="">
-                    
-                      {{ form.hidden_tag() }}
-
-                      <label class="mb-2 ml-1 font-bold text-size-xs text-slate-700">Username</label>
-                      <div class="mb-4">
-                        {{ form.username(placeholder="Username", class="focus:shadow-soft-primary-outline text-size-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow") }}
-                      </div>
-
-                      <label class="mb-2 ml-1 font-bold text-size-xs text-slate-700">Password</label>
-                      <div class="mb-4">
-                        {{ form.password(placeholder="Password", class="focus:shadow-soft-primary-outline text-size-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow", type="password") }}
-                      </div>
-
-                      <div class="min-h-6 mb-0.5 block pl-12">
-                        <input id="rememberMe" class="mt-0.54 rounded-10 duration-250 ease-soft-in-out after:rounded-circle after:shadow-soft-2xl after:duration-250 checked:after:translate-x-5.25 h-5-em relative float-left -ml-12 w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-slate-800/95 checked:bg-slate-800/95 checked:bg-none checked:bg-right" type="checkbox" checked="" />
-                        <label class="mb-2 ml-1 font-normal cursor-pointer select-none text-size-sm text-slate-700" for="rememberMe">Remember me</label>
-                      </div>
-                      <div class="text-center">
-                        <button type="submit" name="login"  
-                                class="inline-block w-full px-6 py-3 mt-6 mb-0 font-bold text-center text-white uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-size-xs ease-soft-in tracking-tight-soft bg-gradient-cyan hover:scale-102 hover:shadow-soft-xs active:opacity-85">Sign in</button>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="p-6 px-1 pt-0 text-center bg-transparent border-t-0 border-t-solid rounded-b-2xl lg:px-2">
-                    <p class="mx-auto mb-6 leading-normal text-size-sm">
-                      Don't have an account?
-                      <a href="{{ url_for('authentication_blueprint.register') }}" 
-                         class="relative z-10 font-semibold text-transparent bg-gradient-cyan bg-clip-text">Sign UP</a>
-                    </p>
-                  </div>
-                </div>
+<main class="mt-0 transition-all duration-200 ease-soft-in-out">
+  <section>
+    <div class="relative flex items-center p-0 overflow-hidden animated-bg min-h-75-screen">
+      <div class="container z-10">
+        <div class="flex flex-wrap mt-0 -mx-3">
+          <div class="flex flex-col w-full max-w-full px-3 mx-auto md:flex-0 shrink-0 md:w-6/12 lg:w-5/12 xl:w-4/12">
+            <div class="relative flex flex-col min-w-0 mt-32 break-words card">
+              <div class="p-6 pb-0 mb-0 bg-transparent border-b-0 rounded-t-2xl">
+                <h4 class="relative z-10 font-bold gradient-text">
+                  Welcome to AI Yoga Mat
+                </h4>
+                <p class="mb-0 text-gray-600">
+                  {% if msg %}
+                    <span class="">{{ msg | safe }}</span>
+                  {% else %}
+                    Add your credentials to sign in
+                  {% endif %}
+                </p>
               </div>
-              <div class="w-full max-w-full px-3 lg:flex-0 shrink-0 md:w-6/12">
-                <div class="absolute top-0 hidden w-3/5 h-full -mr-32 overflow-hidden -skew-x-10 -right-40 rounded-bl-xl md:block">
-                  <div class="absolute inset-x-0 top-0 z-0 h-full -ml-16 bg-cover skew-x-10" style="background-image: url('{{ config.ASSETS_ROOT }}/img/curved-images/curved6.jpg')"></div>
-                </div>
+              <div class="flex-auto p-6">
+                <form role="form text-left" method="post" action="">
+                  {{ form.hidden_tag() }}
+                  <label class="mb-2 ml-1 font-bold text-size-xs text-blue">Username</label>
+                  <div class="mb-4">
+                    {{ form.username(placeholder="Username", class="custom-input") }}
+                  </div>
+
+                  <label class="mb-2 ml-1 font-bold text-size-xs text-blue">Password</label>
+                  <div class="mb-4">
+                    {{ form.password(placeholder="Password", class="custom-input", type="password") }}
+                  </div>
+
+                  <div class="min-h-6 mb-0.5 block pl-12">
+                    <input id="rememberMe" class="rounded h-5 w-5 border border-gray-300 focus:ring-primary" type="checkbox" checked />
+                    <label class="mb-2 ml-1 font-normal cursor-pointer select-none text-size-sm text-slate-700" for="rememberMe">Remember me</label>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" name="login" class="btn-gradient px-6 py-3 mt-6 rounded-lg">
+                      Sign In
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="p-6 px-1 pt-0 text-center bg-transparent border-t-0 border-t-solid rounded-b-2xl lg:px-2">
+                <p class="mx-auto mb-6 leading-normal text-size-sm">
+                  Don't have an account?
+                  <a href="{{ url_for('authentication_blueprint.register') }}" class="gradient-text font-semibold">Sign Up</a>
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
+  </section>
+</main>
 
-    {% include "includes/footer-fullscreen.html" %}
-
+{% include "includes/footer-fullscreen.html" %}
 {% endblock content %}
-
-<!-- Specific JS goes HERE --> 
-{% block javascripts %}{% endblock javascripts %}

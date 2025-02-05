@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pose_name.capitalize() }} Pose Detection</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        #video-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        img {
+            width: 60%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ pose_name.capitalize() }} Pose Detection</h1>
+    <p>Perform the {{ pose_name.capitalize() }} Pose in front of the camera</p>
+
+    <div id="video-container">
+        <img src="{{ url_for('video_feed', pose_name=pose_name) }}" alt="Yoga Pose Detection">
+    </div>
+
+</body>
+</html>
