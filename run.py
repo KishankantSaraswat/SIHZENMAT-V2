@@ -16,10 +16,12 @@ from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain_groq import ChatGroq
 from flask import session, request, jsonify
 
+# Get the directory where the script is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Paths for the model and scaler
-base_path = r'C:\Users\pc\Downloads\flask-soft-dashboard-tailwind-main\flask-soft-dashboard-tailwind-main'
-model_path = os.path.join(base_path, 'yoga_pose_model.pkl')
-scaler_path = os.path.join(base_path, 'yoga_pose_scaler.pkl')
+model_path = os.path.join(BASE_DIR, 'yoga_pose_model.pkl')
+scaler_path = os.path.join(BASE_DIR, 'yoga_pose_scaler.pkl')
 
 # Load the saved model and scaler
 with open(model_path, 'rb') as model_file:

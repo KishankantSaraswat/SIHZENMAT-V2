@@ -1,13 +1,18 @@
 services:
   - type: web
-    name: flask-soft-dashboard
+    name: sihzenmat-v2
     plan: starter
     env: python
-    region: frankfurt  # region should be same as your database region.
-    buildCommand: "./build.sh"
-    startCommand: "gunicorn run:app"
+    region: frankfurt
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: gunicorn run:app
     envVars:
       - key: SECRET_KEY
         generateValue: true
+      - key: FLASK_ENV
+        value: production
+      - key: GROQ_API_KEY
+        sync: false
       - key: WEB_CONCURRENCY
         value: 4
