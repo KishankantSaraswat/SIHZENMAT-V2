@@ -5,8 +5,6 @@ services:
     env: python
     region: frankfurt
     buildCommand: |
-      apt-get update
-      apt-get install -y default-libmysqlclient-dev build-essential
       pip install -r requirements.txt
     startCommand: gunicorn run:app
     envVars:
@@ -18,5 +16,3 @@ services:
         sync: false
       - key: WEB_CONCURRENCY
         value: 4
-      - key: DATABASE_URL
-        sync: false

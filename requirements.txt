@@ -90,7 +90,7 @@ requests==2.32.3
 requests-oauthlib==2.0.0
 requests-toolbelt==1.0.0
 rpds-py==0.21.0
-scikit-learn==1.4.2
+scikit-learn==1.5.2
 scipy==1.14.1
 sentencepiece==0.2.0
 six==1.16.0
@@ -111,4 +111,3 @@ WTForms-Alchemy==0.18.0
 WTForms-Components==0.10.5
 xxhash==3.5.0
 yarl==1.17.1
-mysqlclient==2.2.4
